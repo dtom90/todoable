@@ -1,8 +1,7 @@
 # Todoable
+[![Build Status](https://travis-ci.org/dtom90/todoable.svg?branch=master)](https://travis-ci.org/dtom90/todoable)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/todoable`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Ruby gem that wraps the endpoints of a todo list service HTTP API
 
 ## Installation
 
@@ -22,7 +21,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+service = Todoable::Service.new(ENV['username'], ENV['password'])
+
+@service.create_list 'New List'
+p @service.get_lists
+p @service.get_list '<list_id>'
+```
 
 ## Development
 
@@ -32,7 +37,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/todoable.
+Bug reports and pull requests are welcome on GitHub at [https://github.com/dtom90/todoable](https://github.com/dtom90/todoable).
 
 ## License
 
