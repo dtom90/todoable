@@ -7,7 +7,12 @@ RSpec.describe Todoable do
   
   before(:all) do
     @service = Todoable::Service.new(ENV['username'], ENV['password'])
-    @list_id = 'foo'
+  end
+  
+  it 'throws an error when a bad service is created' do
+    expect {
+      Todoable::Service.new('bad', 'creds')
+    }.to raise_error('Unauthorized: credentials not recognized, or token expired')
   end
   
   it 'gets a temporary token from the service' do
@@ -18,6 +23,12 @@ RSpec.describe Todoable do
   it 'gets the lists from the service' do
     lists = @service.get_lists
     expect(lists).to be_a(Array)
+  end
+  
+  it 'creates a bad list' do
+    expect {
+      @service.create_list nil
+    }.to raise_error('Unprocessable Entity: The data you submitted could not be processed')
   end
   
   it 'creates a new list, gets info of the list, renames it, deletes it' do
